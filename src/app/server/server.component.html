@@ -1,1 +1,30 @@
-<p>This is the Server Component</p>
+<label for="">Server Name</label>
+<!-- <input type="text" class="form-control" (keyup)="onUpdateServerName($event)"> -->
+<input type="text" class="form-control" [(ngModel)]="serverName">
+<p>{{ serverName === '' ? 'No input' : serverName }}</p>
+
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">
+    Add Server
+</button>
+<p>
+    {{ serverCreationStatus }}
+    <span *ngIf="isServerCreated" style="font-weight: bold;" [ngStyle]="{backgroundColor: 'green'}" [ngClass]="{online: isServerCreated}">
+        {{ ' ' + serverName + ' is created!' }}
+    </span>
+</p>
+
+<ul>
+    <li *ngFor="let server of serverList">{{ server }}</li>
+</ul>
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+<!-- MAX'S ngIf example with 'else' -->
+<!-- <p *ngIf="isServerCreated; else noServer" [ngStyle]="{backgroundColor: 'green'}" [ngClass]="{online: isServerCreated}">{{ ' ' + serverName + ' is created!' }}</p>
+<ng-template #noServer>
+    <p>{{ serverCreationStatus }}</p>
+</ng-template> -->
